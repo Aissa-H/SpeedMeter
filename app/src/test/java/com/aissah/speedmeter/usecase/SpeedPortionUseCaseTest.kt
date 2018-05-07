@@ -20,7 +20,7 @@ class SpeedPortionUseCaseTest {
   fun getSpeedPortion_shouldReturnSpeedPortion() {
     //arrange
     val speedPortion = SpeedPortion(55f, 35f, 28f)
-    `when`(dao.getSpeedPortions()).thenReturn(Single.just(speedPortion))
+    `when`(dao.getSpeedPortions()).thenReturn(Single.just(listOf(speedPortion)))
 
     //act
     val testObserver = useCase.getSpeedPortions().test()
@@ -29,7 +29,7 @@ class SpeedPortionUseCaseTest {
     verify(dao).getSpeedPortions()
     testObserver.assertNoErrors()
     testObserver.assertComplete()
-    testObserver.assertResult(speedPortion)
+    testObserver.assertResult(listOf(speedPortion))
   }
 
   @Test

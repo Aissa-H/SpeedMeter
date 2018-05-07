@@ -8,7 +8,7 @@ import io.reactivex.Single
  */
 interface ISpeedPortionDAO {
 
-  fun getSpeedPortions(): Single<SpeedPortion>
+  fun getSpeedPortions(): Single<List<SpeedPortion>>
 
   fun storeSpeedPortions(vararg portions:SpeedPortion): Single<Boolean>
 
