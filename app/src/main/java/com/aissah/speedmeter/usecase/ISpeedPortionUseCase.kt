@@ -1,4 +1,4 @@
-package com.aissah.speedmeter.dao
+package com.aissah.speedmeter.usecase
 
 import com.aissah.speedmeter.model.SpeedPortion
 import io.reactivex.Single
@@ -6,10 +6,10 @@ import io.reactivex.Single
 /**
  * Created on 07/05/18.
  */
-interface SpeedPortionDAO {
+interface ISpeedPortionUseCase {
 
   fun getSpeedPortions(): Single<SpeedPortion>
 
-  fun storeSpeedPortions(vararg portions:SpeedPortion): Single<Boolean>
+  fun storeSpeedPortions(vararg portions: SpeedPortion): Single<Boolean>
 
 }

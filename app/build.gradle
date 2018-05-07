@@ -36,4 +36,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2"
     implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.rxjava2"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid"
+
+    //Testing
+    testImplementation "com.nhaarman:mockito-kotlin:$rootProject.mockitoKotlin"
 }
