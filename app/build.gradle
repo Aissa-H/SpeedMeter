@@ -27,7 +27,13 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.github.anastr:speedviewlib:1.2.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.rxjava2"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid"
 }
