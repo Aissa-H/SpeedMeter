@@ -91,7 +91,7 @@ class HomePresenter(val useCase: ISpeedPortionUseCase = SpeedPortionUseCase(
     val maxSpeed = speeds.max()
     val averageSpeed = speeds.average().toFloat()
     val latlngs = locationsOfCurrentCourse.map { LatLng(it.latitude, it.longitude) }
-    val distance = SphericalUtil.computeLength(latlngs).toFloat()
+    val distance = (SphericalUtil.computeLength(latlngs)/1000.0).toFloat()
     val speedPortion = SpeedPortion(maxSpeed!!, averageSpeed, distance)
     useCase.storeSpeedPortions(speedPortion)
   }
