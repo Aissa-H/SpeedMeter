@@ -1,3 +1,4 @@
 <resources>
   <string name="app_name">SpeedMeter</string>
+  <string name="error">Une erreur est survenue, merci de réessayer</string>
 </resources>
