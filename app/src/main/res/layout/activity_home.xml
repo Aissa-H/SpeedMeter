@@ -23,49 +23,18 @@
       app:layout_constraintTop_toTopOf="parent"
       />
 
-  <LinearLayout
-      android:layout_width="match_parent"
+  <include layout="@layout/layout_speedportion_details"
+      android:id="@+id/laySpeedPartionDetails"
+      android:visibility="gone"/>
+
+  <ProgressBar
+      android:id="@+id/progressBar"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      android:orientation="vertical"
-      android:visibility="gone"
-      >
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/last_course"
-        android:textSize="32sp"
-        android:textAlignment="center"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/speed_average"
-        android:textSize="@dimen/normal_text"
-        android:textAlignment="center"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/max_speed"
-        android:textSize="@dimen/normal_text"
-        android:textAlignment="center"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/distance_traveled"
-        android:textSize="@dimen/normal_text"
-        android:textAlignment="center"
-        />
-
-  </LinearLayout>
+      />
 
 </android.support.constraint.ConstraintLayout>

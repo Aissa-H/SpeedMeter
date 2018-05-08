@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:orientation="vertical"
+    tools:showIn="@layout/activity_home"
+    >
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/last_course"
+      android:textSize="32sp"
+      android:textAlignment="center"
+      />
+
+  <TextView
+      android:id="@+id/tvSpeedAverage"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/speed_average"
+      android:textSize="@dimen/normal_text"
+      android:textAlignment="center"
+      />
+
+  <TextView
+      android:id="@+id/tvMaxSpeed"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/max_speed"
+      android:textSize="@dimen/normal_text"
+      android:textAlignment="center"
+      />
+
+  <TextView
+      android:id="@+id/tvDistanceTraveled"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/distance_traveled"
+      android:textSize="@dimen/normal_text"
+      android:textAlignment="center"
+      />
+
+</LinearLayout>
