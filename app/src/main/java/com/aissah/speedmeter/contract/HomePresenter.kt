@@ -74,7 +74,7 @@ class HomePresenter(val useCase: ISpeedPortionUseCase = SpeedPortionUseCase(
       portionStarted = true
       view.onPortionStart()
     }
-    view.setSpeed(location.speed)
+    view.setSpeed((location.speed *3600)/1000)
     locationsOfCurrentCourse.add(location)
   }
 
@@ -87,7 +87,7 @@ class HomePresenter(val useCase: ISpeedPortionUseCase = SpeedPortionUseCase(
   }
 
   private fun computeAndStoreSpeedPortion() {
-    val speeds = locationsOfCurrentCourse.map { it.speed }
+    val speeds = locationsOfCurrentCourse.map { (it.speed *3600)/1000 }
     val maxSpeed = speeds.max()
     val averageSpeed = speeds.average().toFloat()
     val latlngs = locationsOfCurrentCourse.map { LatLng(it.latitude, it.longitude) }
