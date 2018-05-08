@@ -1,4 +1,8 @@
 <resources>
   <string name="app_name">SpeedMeter</string>
   <string name="error">Une erreur est survenue, merci de réessayer</string>
+  <string name="speed_average">Vitesse moyenne :</string>
+  <string name="max_speed">Vitesse maximum :</string>
+  <string name="distance_traveled">Distance marcourue :</string>
+  <string name="last_course">Dernier parcours</string>
 </resources>
