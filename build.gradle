@@ -39,4 +39,6 @@ ext {
     mockitoKotlin           = '1.5.0'
     mockitoCore           = '2.18.3'
     robolectric                 = '3.8'
+    googlePlayServices = '15.0.1'
+    speedView = '1.2.0'
 }

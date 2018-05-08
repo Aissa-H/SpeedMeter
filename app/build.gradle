@@ -37,11 +37,11 @@ dependencies {
 
   //UI
   implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-  implementation 'com.github.anastr:speedviewlib:1.2.0'
+  implementation "com.github.anastr:speedviewlib:$rootProject.speedView"
 
   //Util
   implementation 'com.google.maps.android:android-maps-utils:0.5'
-  compile 'com.google.android.gms:play-services:12.0.1'
+  compile "com.google.android.gms:play-services-maps:$rootProject.googlePlayServices"
   apply plugin: 'com.livinglifetechway.quickpermissions_plugin'
 
   //RxJava
