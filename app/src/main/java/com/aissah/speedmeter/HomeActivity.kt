@@ -1,12 +1,14 @@
 package com.aissah.speedmeter
 
-import android.support.v7.app.AppCompatActivity
+import android.Manifest
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import com.aissah.speedmeter.contract.HomePresenter
 import com.aissah.speedmeter.contract.IHomeContract
 import com.aissah.speedmeter.model.SpeedPortion
+import com.livinglifetechway.quickpermissions.annotations.WithPermissions
 import kotlinx.android.synthetic.main.activity_home.speedView
 
 class HomeActivity : AppCompatActivity(), IHomeContract.View {
@@ -17,6 +19,14 @@ class HomeActivity : AppCompatActivity(), IHomeContract.View {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_home)
     presenter.attachView(this)
+    startSpeedMeter()
+  }
+
+  @WithPermissions(
+      permissions = [(Manifest.permission.ACCESS_FINE_LOCATION), (Manifest.permission.ACCESS_COARSE_LOCATION)]
+  )
+  fun startSpeedMeter() {
+    presenter.startSpeedMeter(this)
   }
 
   override fun setSpeed(speed: Float) {
@@ -29,6 +39,7 @@ class HomeActivity : AppCompatActivity(), IHomeContract.View {
 
   override fun onPortionEnd() {
     speedView.visibility = View.GONE
+    presenter.getLastSpeedPortions()
   }
 
   override fun setLastSpeedPortions(portions: List<SpeedPortion>) {
@@ -36,6 +47,6 @@ class HomeActivity : AppCompatActivity(), IHomeContract.View {
   }
 
   override fun setError(errorMessage: String) {
-    Toast.makeText(this,errorMessage,Toast.LENGTH_SHORT).show()
+    Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
   }
 }

@@ -1,5 +1,6 @@
 package com.aissah.speedmeter.contract
 
+import android.content.Context
 import com.aissah.speedmeter.model.SpeedPortion
 
 /**
@@ -18,6 +19,7 @@ interface IHomeContract {
   interface Presenter{
     fun attachView(view:IHomeContract.View)
     fun getLastSpeedPortions()
+    fun startSpeedMeter(context: Context)
   }
 
 }

@@ -39,6 +39,9 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.github.anastr:speedviewlib:1.2.0'
 
+    //Util
+    apply plugin: 'com.livinglifetechway.quickpermissions_plugin'
+
     //RxJava
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2"
     implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.rxjava2"
