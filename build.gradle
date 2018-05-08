@@ -33,4 +33,6 @@ ext {
     rxAndroid               = '2.0.1'
     junit                   = '4.12'
     mockitoKotlin           = '1.5.0'
+    mockitoCore           = '2.18.3'
+    robolectric                 = '3.8'
 }
