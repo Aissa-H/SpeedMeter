@@ -5,7 +5,7 @@ import io.reactivex.Single
 
 class InMemorySpeedPortionDAO : ISpeedPortionDAO {
 
-  val portions= mutableListOf<SpeedPortion>()
+  val portions = mutableListOf<SpeedPortion>()
 
   override fun getSpeedPortions(): Single<List<SpeedPortion>> {
     return Single.just(portions)

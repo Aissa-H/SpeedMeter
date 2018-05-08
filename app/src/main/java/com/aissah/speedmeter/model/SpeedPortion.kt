@@ -5,4 +5,4 @@ package com.aissah.speedmeter.model
  * averageSpeed : in kilometers by second
  * distance : in kilometers
  */
-data class SpeedPortion(val maxSpeed:Float, val averageSpeed:Float, val distance:Float)
+data class SpeedPortion(val maxSpeed: Float, val averageSpeed: Float, val distance: Float)

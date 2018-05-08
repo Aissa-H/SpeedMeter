@@ -15,7 +15,9 @@ import com.aissah.speedmeter.dao.InMemorySpeedPortionDAO
 import com.aissah.speedmeter.model.SpeedPortion
 import com.aissah.speedmeter.usecase.ISpeedPortionUseCase
 import com.aissah.speedmeter.usecase.SpeedPortionUseCase
-import com.google.android.gms.maps.model.LatLng
+import com.aissah.speedmeter.util.toKilometerByHour
+import com.aissah.speedmeter.util.toKilometers
+import com.aissah.speedmeter.util.toLatLng
 import com.google.maps.android.SphericalUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -48,7 +50,7 @@ class HomePresenter(val useCase: ISpeedPortionUseCase = SpeedPortionUseCase(
         object : LocationListener {
           override fun onLocationChanged(location: Location?) {
             location?.let {
-              when (it.speed) {
+              when (it.speed.toKilometerByHour()) {
                 in 0..10 -> onVeryLowSpeed()
                 else -> onNormalSpeed(it)
               }
@@ -74,7 +76,7 @@ class HomePresenter(val useCase: ISpeedPortionUseCase = SpeedPortionUseCase(
       portionStarted = true
       view.onPortionStart()
     }
-    view.setSpeed((location.speed *3600)/1000)
+    view.setSpeed(location.speed.toKilometerByHour())
     locationsOfCurrentCourse.add(location)
   }
 
@@ -87,11 +89,11 @@ class HomePresenter(val useCase: ISpeedPortionUseCase = SpeedPortionUseCase(
   }
 
   private fun computeAndStoreSpeedPortion() {
-    val speeds = locationsOfCurrentCourse.map { (it.speed *3600)/1000 }
+    val speeds = locationsOfCurrentCourse.map { it.speed.toKilometerByHour() }
     val maxSpeed = speeds.max()
     val averageSpeed = speeds.average().toFloat()
-    val latlngs = locationsOfCurrentCourse.map { LatLng(it.latitude, it.longitude) }
-    val distance = (SphericalUtil.computeLength(latlngs)/1000.0).toFloat()
+    val latlngs = locationsOfCurrentCourse.map { it.toLatLng() }
+    val distance = (SphericalUtil.computeLength(latlngs).toKilometers()).toFloat()
     val speedPortion = SpeedPortion(maxSpeed!!, averageSpeed, distance)
     useCase.storeSpeedPortions(speedPortion)
   }

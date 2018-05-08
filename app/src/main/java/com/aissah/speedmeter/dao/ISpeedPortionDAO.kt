@@ -10,6 +10,6 @@ interface ISpeedPortionDAO {
 
   fun getSpeedPortions(): Single<List<SpeedPortion>>
 
-  fun storeSpeedPortions(vararg portions:SpeedPortion): Single<Boolean>
+  fun storeSpeedPortions(vararg portions: SpeedPortion): Single<Boolean>
 
 }

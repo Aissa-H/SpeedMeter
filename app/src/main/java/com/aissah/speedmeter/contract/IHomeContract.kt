@@ -8,16 +8,16 @@ import com.aissah.speedmeter.model.SpeedPortion
  */
 interface IHomeContract {
 
-  interface View{
-    fun setSpeed(speed:Float)
+  interface View {
+    fun setSpeed(speed: Float)
     fun onPortionStart()
     fun onPortionEnd()
-    fun setLastSpeedPortions(portions:List<SpeedPortion>)
-    fun setError(errorMessage:String)
+    fun setLastSpeedPortions(portions: List<SpeedPortion>)
+    fun setError(errorMessage: String)
   }
 
-  interface Presenter{
-    fun attachView(view:IHomeContract.View)
+  interface Presenter {
+    fun attachView(view: IHomeContract.View)
     fun getLastSpeedPortions()
     fun startSpeedMeter(context: Context)
   }
