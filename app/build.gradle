@@ -4,6 +4,10 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+ext {
+  appName = 'speedmeter'
+}
+
 android {
   compileSdkVersion 27
   defaultConfig {
@@ -14,9 +18,12 @@ android {
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
+
+
   buildTypes {
     release {
-      minifyEnabled false
+      minifyEnabled false //todo: set true and see why cannot generate signed apk
+      shrinkResources false //todo: set true and see why cannot generate signed apk
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
@@ -24,6 +31,12 @@ android {
   testOptions {
     unitTests {
       includeAndroidResources = true
+    }
+  }
+
+  android.applicationVariants.all { variant ->
+    variant.outputs.all {
+      outputFileName = "$project.ext.appName-${variant.name}.apk"
     }
   }
 }
@@ -41,7 +54,7 @@ dependencies {
 
   //Util
   implementation 'com.google.maps.android:android-maps-utils:0.5'
-  compile "com.google.android.gms:play-services-maps:$rootProject.googlePlayServices"
+  implementation "com.google.android.gms:play-services-maps:$rootProject.googlePlayServices"
   apply plugin: 'com.livinglifetechway.quickpermissions_plugin'
 
   //RxJava
