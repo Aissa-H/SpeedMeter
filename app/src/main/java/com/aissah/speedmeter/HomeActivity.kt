@@ -2,9 +2,12 @@ package com.aissah.speedmeter
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import com.aissah.speedmeter.contract.HomePresenter
 import com.aissah.speedmeter.contract.IHomeContract
 import com.aissah.speedmeter.model.SpeedPortion
+import kotlinx.android.synthetic.main.activity_home.speedView
 
 class HomeActivity : AppCompatActivity(), IHomeContract.View {
 
@@ -17,15 +20,15 @@ class HomeActivity : AppCompatActivity(), IHomeContract.View {
   }
 
   override fun setSpeed(speed: Float) {
-    TODO("not implemented")
+    speedView.setSpeedAt(speed)
   }
 
   override fun onPortionStart() {
-    TODO("not implemented")
+    speedView.visibility = View.VISIBLE
   }
 
   override fun onPortionEnd() {
-    TODO("not implemented")
+    speedView.visibility = View.GONE
   }
 
   override fun setLastSpeedPortions(portions: List<SpeedPortion>) {
@@ -33,6 +36,6 @@ class HomeActivity : AppCompatActivity(), IHomeContract.View {
   }
 
   override fun setError(errorMessage: String) {
-    TODO("not implemented")
+    Toast.makeText(this,errorMessage,Toast.LENGTH_SHORT).show()
   }
 }
