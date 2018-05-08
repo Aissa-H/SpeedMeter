@@ -12,8 +12,11 @@ import android.util.Log
 import com.aissah.speedmeter.contract.IHomeContract.Presenter
 import com.aissah.speedmeter.contract.IHomeContract.View
 import com.aissah.speedmeter.dao.InMemorySpeedPortionDAO
+import com.aissah.speedmeter.model.SpeedPortion
 import com.aissah.speedmeter.usecase.ISpeedPortionUseCase
 import com.aissah.speedmeter.usecase.SpeedPortionUseCase
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.SphericalUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
@@ -28,6 +31,7 @@ class HomePresenter(val useCase: ISpeedPortionUseCase = SpeedPortionUseCase(
   private val UPDATE_INTERVAL_MS = TimeUnit.SECONDS.toMillis(5)
   lateinit var view: View
   private var portionStarted: Boolean = false
+  private var locationsOfCurrentCourse = mutableListOf<Location>()
 
   override fun attachView(view: View) {
     this.view = view
@@ -46,7 +50,7 @@ class HomePresenter(val useCase: ISpeedPortionUseCase = SpeedPortionUseCase(
             location?.let {
               when (it.speed) {
                 in 0..10 -> onVeryLowSpeed()
-                else -> onNormalSpeed(it.speed)
+                else -> onNormalSpeed(it)
               }
             }
           }
@@ -65,19 +69,31 @@ class HomePresenter(val useCase: ISpeedPortionUseCase = SpeedPortionUseCase(
         })
   }
 
-  private fun onNormalSpeed(speed: Float) {
+  private fun onNormalSpeed(location: Location) {
     if (!portionStarted) {
       portionStarted = true
       view.onPortionStart()
     }
-    view.setSpeed(speed)
+    view.setSpeed(location.speed)
+    locationsOfCurrentCourse.add(location)
   }
 
   private fun onVeryLowSpeed() {
     if (portionStarted) {
+      computeAndStoreSpeedPortion()
       view.onPortionEnd()
       portionStarted = false
     }
+  }
+
+  private fun computeAndStoreSpeedPortion() {
+    val speeds = locationsOfCurrentCourse.map { it.speed }
+    val maxSpeed = speeds.max()
+    val averageSpeed = speeds.average().toFloat()
+    val latlngs = locationsOfCurrentCourse.map { LatLng(it.latitude, it.longitude) }
+    val distance = SphericalUtil.computeLength(latlngs).toFloat()
+    val speedPortion = SpeedPortion(maxSpeed!!, averageSpeed, distance)
+    useCase.storeSpeedPortions(speedPortion)
   }
 
   override fun getLastSpeedPortions() {
